@@ -1,19 +1,35 @@
-= fasta_util
+= Fasta Utility
 
-Description goes here.
+This is a pretty simple Thor[http://github.com/wycats/thor] application for performing a number of common tasks on fasta files.
 
-== Contributing to fasta_util
- 
-* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
-* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
-* Fork the project
-* Start a feature/bugfix branch
-* Commit and push until you are happy with your contribution
-* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
-* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+So far, supported actions are:
+<tt>fasta_util lengths</tt>:: Calculates basic statistics on the lengths of the entries in the file.
+<tt>fasta_util filter</tt>:: Applies a variety of filter types to the entries in a fasta file.
+<tt>fasta_util clean</tt>:: Reformats each entry, wrapping long lines
+<tt>fasta_util sort</tt>:: Sorts the entries in a fasta file according to length. 
+
+
+Detailed help on each of the options can be accessed with
+
+  fasta_util help COMMAND
+
+eg:
+
+  $ fasta_util help filter
+  
+  Usage:
+    fasta_util filter FILENAME [options]
+
+  Options:
+    -l, [--length-cutoff=N]            # Only entries with length >= cutoff will be returned.
+                                       # Default: 0
+    -v, [--inverse-match]              # Return the inverse of the match after all the other filters have been applied.
+    -d, [--defline-grep=DEFLINE_GREP]  # A regular expression, used to search the entry's definition line.
+
+  Description:
+    Impose a filter or set of filters on entries in a fasta file where each sequence in the file has to pass all of the filters to be printed.
 
 == Copyright
 
-Copyright (c) 2011 robsyme. See LICENSE.txt for
-further details.
+Copyright (c) 2011 Robert Syme. MIT Licence. See LICENSE.txt for further details.
 
