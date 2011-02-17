@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require 'fasta_util'
+
+FastaUtility.start

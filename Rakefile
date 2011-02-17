@@ -15,14 +15,15 @@ Jeweler::Tasks.new do |gem|
   gem.name = "fasta_util"
   gem.homepage = "http://github.com/robsyme/fasta_util"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{A simple tool for performing common tasks with fasta files.}
+  gem.description = %Q{Easy fasta filtering, wrapping, calculating common statistics, sorting etc. Based on the fasta_tool script that I think was written by Jason Stajich.}
   gem.email = "rob.syme@gmail.com"
   gem.authors = ["robsyme"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,
   # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
-  #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
-  #  gem.add_development_dependency 'rspec', '> 1.2.3'
+  gem.add_runtime_dependency 'bio', '>= 1.4.1'
+  gem.add_runtime_dependency 'thor', '>= 0.14.6'
+  gem.add_development_dependency 'rspec', '>= 1.2.3'
 end
 Jeweler::RubygemsDotOrgTasks.new
 
