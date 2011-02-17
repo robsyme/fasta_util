@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "bin/fasta_util",
+    "fasta_util.gemspec",
     "lib/fasta_util.rb",
     "test/helper.rb",
     "test/test_fasta_util.rb"
