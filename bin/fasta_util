@@ -56,12 +56,16 @@ class FastaUtility < Thor
   method_option :length_cutoff, :aliases => '-l', :type => :numeric, :default => 0,  :desc => 'Only entries with length >= cutoff will be returned.'
   method_option :inverse_match,  :aliases => '-v', :type => :boolean, :desc => "Return the inverse of the match after all the other filters have been applied."
   method_option :defline_grep,  :aliases => '-d', :type => :string,  :default => '', :desc => "A regular expression, used to search the entry's definition line."
+  method_option :definitions_file, :aliases => '-f', :type => :string, :default => '', :desc => "A file with definitions to match, one per line."
   def filter(filename)
     invoke :filecheck
+    invoke :filecheck, [options.definitions_file]
+    requested_definitions = File.open(options.definitions_file).map{|definition| definition.strip}
     Bio::FlatFile.open(filename).each do |entry|
       passed = true
       passed &&= (entry.length >= options.length_cutoff)
       passed &&= (entry.definition.match(Regexp.new(options.defline_grep)))
+      passed &&= (requested_definitions.include? entry.definition)
       passed = !passed if options.inverse_match
       puts entry if passed
     end
