@@ -95,9 +95,9 @@ class FastaUtility < Thor
     invoke :filecheck
     composition_hash = Hash[Bio::FlatFile.open(filename).map{|entry| [entry.definition, entry.seq.composition]}]
     
-    all_chars = composition_hash.values.map{|h| h.keys}.inject(:+).to_set
+    all_chars = composition_hash.values.map{|h| h.keys}.inject(:+).uniq.sort
     
-    puts "definition\t#{all_chars.to_a.join("\t")}"
+    puts "definition\t#{all_chars.join("\t")}"
     composition_hash.each do |definition, composition|
       composition.default = 0
       print definition, "\t"
