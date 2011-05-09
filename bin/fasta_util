@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 require 'thor'
 require 'bio'
+require 'set'
 
 class FastaUtility < Thor
   include Thor::Actions
@@ -88,5 +89,21 @@ class FastaUtility < Thor
       puts entry
     end
   end
+  
+  desc "composition FILENAME [options]", "Outputs data on the sequence composition"
+  def composition(filename)
+    invoke :filecheck
+    composition_hash = Hash[Bio::FlatFile.open(filename).map{|entry| [entry.definition, entry.seq.composition]}]
+    
+    all_chars = composition_hash.values.map{|h| h.keys}.inject(:+).to_set
+    
+    puts "definition\t#{all_chars.to_a.join("\t")}"
+    composition_hash.each do |definition, composition|
+      composition.default = 0
+      print definition, "\t"
+      puts all_chars.map{|char| composition[char]}.join("\t")
+    end
+  end
 end
+
 FastaUtility.start
