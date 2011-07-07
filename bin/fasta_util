@@ -5,7 +5,7 @@ require 'set'
 
 class FastaUtility < Thor
   include Thor::Actions
-  Struct.new("Stats", :sum, :l50, :n50, :count, :mean, :median)
+  Struct.new("Stats", :sum, :l50, :n50, :max, :mean, :median, :min, :count)
   
   no_tasks do
     def stats(lengths)
@@ -16,8 +16,10 @@ class FastaUtility < Thor
       stats[:sum] = lengths.inject(:+)
       stats[:l50] = lengths.find{|length| (temp_sum += length) > stats[:sum]/2.0}
       stats[:n50] = lengths.count{|length| length >= stats[:l50]}
+      stats[:max] = lengths.max
       stats[:mean] = stats[:sum].to_f/lengths.length
       stats[:median] = (lengths.length % 2 == 0) ? (lengths[lengths.length/2-1] + lengths[lengths.length/2])/2.0 : lengths[lengths.length/2]
+      stats[:min] = lengths.min
       stats[:count] = lengths.count
       return stats
     end
