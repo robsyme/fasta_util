@@ -63,12 +63,12 @@ class FastaUtility < Thor
   def filter(filename)
     invoke :filecheck
     invoke :filecheck, [options.definitions_file]
-    requested_definitions = File.open(options.definitions_file).map{|definition| definition.strip} if options.definitions_file
+    requested_definitions = File.open(options.definitions_file).map{|definition| definition.strip} unless options.definitions_file == ''
     Bio::FlatFile.open(filename).each do |entry|
       passed = true
       passed &&= (entry.length >= options.length_cutoff)
       passed &&= (entry.definition.match(Regexp.new(options.defline_grep)))
-      passed &&= (requested_definitions.include? entry.definition)
+      passed &&= (requested_definitions.include? entry.definition) unless options.definitions_file == ''
       passed = !passed if options.inverse_match
       puts entry if passed
     end
