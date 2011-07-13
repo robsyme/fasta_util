@@ -63,7 +63,7 @@ class FastaUtility < Thor
   def filter(filename)
     invoke :filecheck
     invoke :filecheck, [options.definitions_file]
-    requested_definitions = File.open(options.definitions_file).map{|definition| definition.strip}
+    requested_definitions = File.open(options.definitions_file).map{|definition| definition.strip} if options.definitions_file
     Bio::FlatFile.open(filename).each do |entry|
       passed = true
       passed &&= (entry.length >= options.length_cutoff)
