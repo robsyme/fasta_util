@@ -4,15 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{fasta_util}
-  s.version = "0.5.1"
+  s.name = "fasta_util"
+  s.version = "0.5.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["robsyme"]
-  s.date = %q{2011-07-13}
-  s.default_executable = %q{fasta_util}
-  s.description = %q{Easy fasta filtering, wrapping, calculating common statistics, sorting etc. Based on the fasta_tool script that I think was written by Jason Stajich.}
-  s.email = %q{rob.syme@gmail.com}
+  s.date = "2011-11-18"
+  s.description = "Easy fasta filtering, wrapping, calculating common statistics, sorting etc. Based on the fasta_tool script that I think was written by Jason Stajich."
+  s.email = "rob.syme@gmail.com"
   s.executables = ["fasta_util"]
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -31,11 +30,11 @@ Gem::Specification.new do |s|
     "test/helper.rb",
     "test/test_fasta_util.rb"
   ]
-  s.homepage = %q{http://github.com/robsyme/fasta_util}
+  s.homepage = "http://github.com/robsyme/fasta_util"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.5.0}
-  s.summary = %q{A simple tool for performing common tasks with fasta files.}
+  s.rubygems_version = "1.8.10"
+  s.summary = "A simple tool for performing common tasks with fasta files."
   s.test_files = [
     "test/helper.rb",
     "test/test_fasta_util.rb"
